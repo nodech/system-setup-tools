@@ -4,9 +4,12 @@ source ./configs/no-enc-disk.sh
 
 echo "--- DISK SETUP ---"
 
-_DISK=""
-echo -n " -- Choose disk: "
-read _DISK
+_DISK=$1
+
+if [[ ! -b "$_DISK" ]]; then
+  echo -n " -- Choose disk: "
+  read _DISK
+fi
 
 if [[ ! -b $_DISK ]]; then
   echo "Disk '$_DISK' is not available, aborting..."
