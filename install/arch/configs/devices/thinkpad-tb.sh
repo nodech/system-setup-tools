@@ -1,8 +1,8 @@
 #!/bin/bash
 
-__DIRECTORY=`dirname ${BASH_SOURCES[0]}`
+__DIRECTORY=`dirname $0`
 source $__DIRECTORY/../../utils/diskType.sh
-__DIRECTORY=`dirname ${BASH_SOURCES[0]}`
+__DIRECTORY=`dirname $0`
 
 ## Thinkpad has 1TB SSD.
 # NOTE: Currently this script is NVME only.
@@ -60,12 +60,12 @@ echo " --- Partition Table is ready. Formatting partitions..."
 # ...
 
 echo " --- Formatting EFI System Partition to FAT32..."
-mkfs.fat -F32 `diskType ${DISK} 1`
+mkfs.fat -F32 `diskPart ${DISK} 1`
 echo " --- Formatting BOOT Partition to EXT4..."
-mkfs.ext4 `diskType ${DISK} 2`
+mkfs.ext4 `diskPart ${DISK} 2`
 echo " --- Formatting SWAP Partition..."
-mkswap `diskType ${DISK} 3`
+mkswap `diskPart ${DISK} 3`
 echo " --- Formatting Root Partition..."
-mkfs.ext4 `diskType ${DISK} 4`
+mkfs.ext4 `diskPart ${DISK} 4`
 echo " --- Formatting Home Partition..."
-mkfs.ext4 `${DISK} 5`
+mkfs.ext4 `diskPart ${DISK} 5`
