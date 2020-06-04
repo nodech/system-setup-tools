@@ -1,3 +1,5 @@
 #!/bin/bash
 
-source ./configs/disk.sh
+__DIRECTORY=`dirname ${BASH_SOURCE[0]}`
+
+source $__DIRECTORY/disk.sh

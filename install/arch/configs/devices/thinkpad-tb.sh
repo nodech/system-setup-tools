@@ -1,7 +1,11 @@
 #!/bin/bash
 
+__DIRECTORY=`dirname ${BASH_SOURCES[0]}`
+
+source $__DIRECTORY/../../utils/diskType.sh
 
 ## Thinkpad has 1TB SSD.
+# NOTE: Currently this script is NVME only.
 # nvme0n1p1 - EFI. - 2GB
 # nvme0n1p2 - /boot - 1GB
 # nvme0n1p3 - SWAP - 20GB
@@ -27,8 +31,9 @@ fi
 echo " --- Wiping current disk..."
 wipefs --force --all $DISK # Wipe disk.
 
-echo " --- Delete partition information..."
+echo " --- Deleting partition information..."
 sgdisk -o $DISK # Delete partition information
+
 echo " --- Creating EFI System Partition (1G)"
 sgdisk -n 1:0:+1G   -t 1:ef00 -c 1:"EFI System Partition" $DISK
 echo " --- Creating Boot Partition (1G)"
@@ -41,3 +46,26 @@ echo " --- Creating Home Partition (150G)"
 sgdisk -n 5:0:+150G -t 5:8302 -c 5:"Home Partition" $DISK
 
 echo " --- Partition Table is ready. Formatting partitions..."
+
+# NOTE: NVM Express partition names go like:
+# nvme0n1
+# | - nvme0n1p1
+# | - nvme0n1p2
+# ...
+
+# For SATA/PCIe connected devices it goes like:
+# sda
+# | - sda1
+# | - sda2
+# ...
+
+echo " --- Formatting EFI System Partition to FAT32..."
+mkfs.fat -F32 `diskType ${DISK} 1`
+echo " --- Formatting BOOT Partition to EXT4..."
+mkfs.ext4 `diskType ${DISK} 2`
+echo " --- Formatting SWAP Partition..."
+mkswap `diskType ${DISK} 3`
+echo " --- Formatting Root Partition..."
+mkfs.ext4 `diskType ${DISK} 4`
+echo " --- Formatting Home Partition..."
+mkfs.ext4 `${DISK} 5`

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source ./configs/init.sh
+__DIRECTORY=`dirname ${BASH_SOURCE[0]}`
+
+source $__DIRECTORY/configs/init.sh
 
 echo "--- Initial setup ---"
 
