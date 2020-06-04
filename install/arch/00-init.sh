@@ -1,14 +1,38 @@
-#!/bin/sh
+#!/bin/bash
+
+source ./configs/init.sh
 
 echo "--- Initial setup ---"
+
+# Verify we are in UEFI MODE.
+echo " --- Verifying boot mode..."
+
+if [[ -d /sys/firmware/efi/efivars ]]; then
+  echo " --- UEFI MODE is 'enabled' !"
+else
+  echo " --- UEFI MODE is 'DISABLED' ! Aborting..."
+  exit 1
+fi
+
+echo " --- Setting keyboard layout to $CFG_KBD..."
+loadkeys $CFG_KBD
 
 # Do we use 4k or something. (make font bigger)
 _SETFONT=""
 
-echo -n " --- Do you want to enable font: latarcyrheb-sun32, type Y: "
+echo -n " -- Do you want to enable font: $CFG_4KFONT, type Y: "
 read  _SETFONT
 
-if ["$_CONFIRM" != "Y"]; then
-  setfont latarcyrheb-sun32;
-  cp ./etc/vconsole.conf /etc/
+if [[ "$_CONFIRM" != "Y" ]]; then
+  echo " --- Setting font to $CFG_4KFONT..."
+  setfont $CFG_4KFONT
+
+  echo " --- Creating vconsole.conf in /etc..."
+  echo -e "FONT=$CFG_4KFONT\nKEYMAP=$CFG_KBD\n" > /etc/vconsole.conf
 fi
+
+echo " --- Setting up NTP..."
+timedatectl set-ntp true
+echo " --- Setting timezone to $CFG_TIMEZONE..."
+timedatectl set-timezone $CFG_TIMEZONE
+timedatectl status
