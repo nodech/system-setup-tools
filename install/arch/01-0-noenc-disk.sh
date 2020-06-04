@@ -33,7 +33,9 @@ echo -n "Deleteing partition table, confirm to continue(Y):"
 read _DELETE
 
 if [[ "$_DELETE" != "Y" ]]; then
-  echo "Deleteing partition table..."
-  sfdisk --delete $_DISK
+  echo "Aborting..."
   exit 2
 fi
+
+echo "Deleteing partition table..."
+sfdisk --delete $_DISK
