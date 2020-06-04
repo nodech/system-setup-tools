@@ -25,9 +25,9 @@ Strange, but whatever..
 ### GIT
  - `pacman -Sy` - update db..
  - `pacman -S git` - Install git.
- - `git clone https://github.com/nodar-chkuaselidze/system-setup-tools.git` (in HOME folder)
  - `git config pull.ff only` - Make sure we only fast forward on cloned repo.
+ - `git clone https://github.com/nodar-chkuaselidze/system-setup-tools.git` (in the HOME folder)
 
 ### Installation Process
  Now we can run scripts from 00-...
-  - `00-init` - Setup console font and keymap.
+  - `00-init` - Setup console font, keymap and timezone.

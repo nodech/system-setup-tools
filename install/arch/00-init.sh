@@ -23,7 +23,7 @@ _SETFONT=""
 echo -n " -- Do you want to enable font: $CFG_4KFONT, type Y: "
 read  _SETFONT
 
-if [[ "$_CONFIRM" != "Y" ]]; then
+if [[ "$_CONFIRM" == "Y" ]]; then
   echo " --- Setting font to $CFG_4KFONT..."
   setfont $CFG_4KFONT
 
@@ -36,3 +36,18 @@ timedatectl set-ntp true
 echo " --- Setting timezone to $CFG_TIMEZONE..."
 timedatectl set-timezone $CFG_TIMEZONE
 timedatectl status
+
+_VIMRC=""
+echo -n " --- Do you want to create tmp vimrc file? type (Y): "
+read _VIMRC
+
+if [[ "$_VIMRC" == "Y" ]]; then
+  echo " --- Creating $HOME/.vimrc file."
+  echo "
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set smartindent
+set autoindent
+" > $HOME/.vimrc
+fi
