@@ -20,7 +20,7 @@ echo " --- Current disk setup:"
 fdisk -l $_DISK
 
 _BACKUP=""
-echo -n " -- Do you want to Back UP current partition table? y/n:"
+echo -n " -- Do you want to Back UP current partition table? Y/N:"
 read _BACKUP
 
 if [[ "$_BACKUP" == "Y" ]]; then
@@ -28,4 +28,12 @@ if [[ "$_BACKUP" == "Y" ]]; then
   sfdisk -d $_DISK > $CFG_BACKUP
 fi
 
-_FORMAT_
+_DELETE=""
+echo -n "Deleteing partition table, confirm to continue(Y):"
+read _DELETE
+
+if [[ "$_DELETE" != "Y" ]]; then
+  echo "Deleteing partition table..."
+  sfdisk --delete $_DISK
+  exit 2
+fi
