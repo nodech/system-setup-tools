@@ -1,8 +1,8 @@
 #!/bin/bash
 
 __DIRECTORY=`dirname ${BASH_SOURCES[0]}`
-
 source $__DIRECTORY/../../utils/diskType.sh
+__DIRECTORY=`dirname ${BASH_SOURCES[0]}`
 
 ## Thinkpad has 1TB SSD.
 # NOTE: Currently this script is NVME only.
