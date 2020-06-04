@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source ./disk.sh
+source ./configs/disk.sh

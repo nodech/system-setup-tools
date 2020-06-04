@@ -6,30 +6,19 @@ if [[ "$1" == "" || "$2" == "" ]]; then
   echo "Usage: ./01-0-noenc-disk.sh HARDWARE_DEVICE CONFIGURATION_FILE"
   echo "Usage example: ./01-0-noenc-disk.sh /dev/nvme0n1 thinkpad-tb"
   echo "list of available configurations:"
-  ls ./configs/devices
+  find ./configs/devices/*.sh
   exit 1
 fi
 
 echo "--- DISK SETUP ---"
 
+_DISK=$1
 _CONFIG=$2
 
-if [[ ! -f "$_CONFIG" ]]; then
-  echo "Could not find configuration file $_CONFIG"
+if [[ ! -x "$_CONFIG" ]]; then
+  echo "Could not find configuration executable $_CONFIG"
   echo "list of available configurations:"
-  ls ./configs/devices
-  exit 1
-fi
-
-source $_CONFIG
-if [[ "$CFG_CREATE_DISK" == "" ]]; then
-  echo "CFG_CREATE_DISK variable is not defined in the config file $_CONFIG"
-  exit 1
-fi
-
-_DISK=$1
-if [[ ! -b $_DISK ]]; then
-  echo "Disk '$_DISK' is not available, aborting..."
+  find ./configs/devices/*.sh
   exit 1
 fi
 
@@ -45,16 +34,16 @@ if [[ "$_BACKUP" == "Y" ]]; then
   sfdisk -d $_DISK > $CFG_BACKUP
 fi
 
-_DELETE=""
-echo -n "Deleteing partition table, confirm to continue(Y):"
-read _DELETE
+_EXECUTE=""
+echo "Executing configuration file $_CONFIG"
+echo "NOTE disk may be wiped depending on configuration."
+echo -n "please confirm (Y):"
+read _EXECUTE
 
-if [[ "$_DELETE" != "Y" ]]; then
+if [[ "$_EXECUTE" != "Y" ]]; then
   echo "Aborting..."
   exit 2
 fi
 
-echo "Deleteing partition table..."
-sfdisk --delete $_DISK
-
-fdisk --wipe=always $_DISK < $CFG_CREATE_DISK
+echo "Running configuration $_CONFIG"
+$_CONFIG $_DISK
