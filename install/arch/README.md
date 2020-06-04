@@ -19,15 +19,24 @@ There was stupid issue with netctl. I created profile using:
 But it failed to start because `wlan0` interface was already `up`. Solution was
 simple though (even though counter-intuitive for me), to disable `wlan0` interface.
  - `ip link set dev wlan0 down`
+ - `netctl enable profilename`
+ - `netctl start profilename`
 
 Strange, but whatever..
 
 ### GIT
  - `pacman -Sy` - update db..
  - `pacman -S git` - Install git.
- - `git config pull.ff only` - Make sure we only fast forward on cloned repo.
  - `git clone https://github.com/nodar-chkuaselidze/system-setup-tools.git` (in the HOME folder)
+ - `cd system-setup-tools`
+ - `git config pull.ff only` - Make sure we only fast forward on cloned repo.
 
 ### Installation Process
  Now we can run scripts from 00-...
   - `00-init` - Setup console font, keymap and timezone.
+  - `01-0-noenc-disk` - Not encrypted disk formatting.
+  - `01-1-enc-disk` - TODO:
+    - https://github.com/Thann/arcrypt/blob/master/arcrypt.sh
+    - https://wiki.archlinux.org/index.php/LVM
+  - `01-...` Should we use LVM? TODO:
+    - https://wiki.archlinux.org/index.php/Dm-crypt
