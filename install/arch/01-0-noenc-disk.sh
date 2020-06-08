@@ -1,8 +1,8 @@
 #!/bin/bash
 
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
-source $__DIRECTORY/configs/no-enc-disk.sh
-__DIRECTORY=`dirname ${BASH_SOURCE[0]}`
+source $__DIRECTORY/configs/configs.sh
+#__DIRECTORY=`dirname ${BASH_SOURCE[0]}`
 
 if [[ "$1" == "" || "$2" == "" ]]; then
   echo "Usage: ./01-0-noenc-disk.sh HARDWARE_DEVICE CONFIGURATION_FILE"

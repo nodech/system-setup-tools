@@ -1,21 +1,25 @@
 #!/bin/bash
 
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
-source $__DIRECTORY/configs/init.sh
-__DIRECTORY=`dirname ${BASH_SOURCE[0]}`
+source $__DIRECTORY/configs/configs.sh
+#__DIRECTORY=`dirname ${BASH_SOURCE[0]}`
 
 echo "--- SYSTEM SETUP ---"
 echo "--- Arch-root step.. ---"
 
-## Source: https://wiki.archlinux.org/index.php/Fstab
-# The fstab(5) file can be used to define how disk partitions, various other
-# block devices, or remote filesystems should be mounted into the filesystem. 
-echo " --- Generating fstab file..."
-genfstab -L /mnt >> /mnt/etc/fstab
+echo " --- Setting up timezone..."
+ln -sf /usr/share/zoneinfo/$CFG_TIMEZONE /etc/localtime
 
-echo " --- Copy the install repository to /mnt/tmp"
-cp -r $__DIRECTORY/../../ /mnt/tmp/system-setup-tools
+echo " --- Generating adjtime..."
+hwclock --systohc
 
+echo " --- Setting up localization..."
+echo $CFG_LOCALEGEN >> /etc/locale.gen
+locale-gen
 
-echo " --- Changing root to the /mnt..."
-arch-root /mnt
+echo $CFG_LANG > /etc/locale.conf
+echo $CFG_HOSTNAME > /etc/hostname
+echo "127.0.1.1 $CFG_HOSTNAME.localdomain $CFG_HOSTNAME" >> /etc/hosts
+
+echo "!!! PLEASE PROVIDE PASSWORD FOR ROOT !!!!"
+passwd

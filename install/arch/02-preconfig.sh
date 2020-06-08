@@ -1,12 +1,9 @@
 #!/bin/bash
 
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
-source $__DIRECTORY/configs/init.sh
-__DIRECTORY=`dirname ${BASH_SOURCE[0]}`
 
-echo "--- Initial configuration of the system ---"
-
-echo " --- Install essential packages..."
+echo "--- SYSTEM PREPARE ---"
+echo "--- Install essential packages..."
 pacstrap /mnt \
   base \
   linux \
@@ -28,3 +25,5 @@ genfstab -L /mnt >> /mnt/etc/fstab
 echo " --- Copy the install repository to /mnt/tmp"
 cp -r $__DIRECTORY/../../ /mnt/tmp/system-setup-tools
 
+echo "!!! NOW REFER TO THE /tmp/system-setup-tools"
+echo "Please type arch-chroot /mnt"
