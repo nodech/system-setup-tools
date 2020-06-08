@@ -69,3 +69,12 @@ echo " --- Formatting Root Partition..."
 mkfs.ext4 `diskPart ${DISK} 4`
 echo " --- Formatting Home Partition..."
 mkfs.ext4 `diskPart ${DISK} 5`
+
+# Now we can mount the file system.
+# We first need mount `root (/)`
+mount `diskPart ${DISK} 4` /mnt
+
+mkdir /mnt/{efi,boot,home}
+mount `diskPart ${DISK} 1` /mnt/efi
+mount `diskPart ${DISK} 2` /mnt/boot
+mount `diskPart ${DISK} 5` /mnt/home
