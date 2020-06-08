@@ -25,7 +25,7 @@ pacstrap /mnt \
 echo " --- Generating fstab file..."
 genfstab -L /mnt >> /mnt/etc/fstab
 
-echo " --- Copy the install repository to /mnt/tmp"
+echo " --- Copy the install repository to /mnt/home/$CFG_USERNAME/system-setup-tools"
 mkdir /mnt/home/$CFG_USERNAME
 cp -r $__DIRECTORY/../../ /mnt/home/$CFG_USERNAME/system-setup-tools
 

@@ -15,7 +15,7 @@ CFG_USERNAME="nd"
 ## Step - 3 Arch-chroot
 CFG_LOCALEGEN="en_US.UTF-8 UTF-8
 ka_GE.UTF-8 UTF-8"
-CFG_LANG="en_US.UTF-8"
+CFG_LOCALE="LANG=en_US.UTF-8"
 
 CFG_HOSTNAME="lnd"
 
