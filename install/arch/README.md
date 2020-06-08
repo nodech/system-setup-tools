@@ -14,13 +14,13 @@ Creating USB Media for installing from MacOS:
 
 ### Network setup
 #### Wireless
-There was stupid issue with netctl. I created profile using:
+There was stupid issue with netctl, it will fail activating the profile
+as long as interface is UP.
+So, solution is just, to take down interface before using `wifi-menu`:
+ - `ip link set dev wlan0 down`
  - `wifi-menu` - which in turn create profile for the network in the `/etc/netctl/`
 But it failed to start because `wlan0` interface was already `up`. Solution was
 simple though (even though counter-intuitive for me), to disable `wlan0` interface.
- - `ip link set dev wlan0 down`
- - `netctl enable profilename`
- - `netctl start profilename`
 
 Strange, but whatever..
 
