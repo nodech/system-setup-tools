@@ -70,11 +70,20 @@ mkfs.ext4 `diskPart ${DISK} 4`
 echo " --- Formatting Home Partition..."
 mkfs.ext4 `diskPart ${DISK} 5`
 
+
+echo ""
+echo " --- Mounting partitions in /mnt..."
+
+echo " --- Mounting /"
 # Now we can mount the file system.
 # We first need mount `root (/)`
 mount `diskPart ${DISK} 4` /mnt
 
+echo " --- Creating /home, /boot, /efi directories"
 mkdir /mnt/{efi,boot,home}
+echo " --- Mounting /efi"
 mount `diskPart ${DISK} 1` /mnt/efi
+echo " --- Mounting /boot"
 mount `diskPart ${DISK} 2` /mnt/boot
+echo " --- Mounting /home"
 mount `diskPart ${DISK} 5` /mnt/home
