@@ -2,7 +2,6 @@
 
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
 source $__DIRECTORY/configs/configs.sh
-#__DIRECTORY=`dirname ${BASH_SOURCE[0]}`
 
 echo "--- SYSTEM SETUP ---"
 echo "--- Arch-root step.. ---"
