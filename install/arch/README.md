@@ -40,3 +40,10 @@ Strange, but whatever..
     - https://wiki.archlinux.org/index.php/LVM
   - `01-...` Should we use LVM? TODO:
     - https://wiki.archlinux.org/index.php/Dm-crypt
+
+### Device specific notes
+#### Thinkpad
+ You can check full details at https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Carbon_(Gen_6)
+
+ - Setup Secure Boot (TODO).
+ - 

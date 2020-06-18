@@ -6,6 +6,13 @@ source $__DIRECTORY/configs/default-configs.sh
 echo "--- SYSTEM SETUP ---"
 echo "--- Arch-root step.. ---"
 
+_CFG_EXEC="$CFG_DEVICE/03-system-config.sh"
+
+if [[ -x "$_CFG_EXEC" ]]; then
+  echo " --- Running custom scripts for the device..."
+  $_CFG_EXEC
+fi
+
 echo " --- Setting up timezone..."
 ln -sf /usr/share/zoneinfo/$CFG_TIMEZONE /etc/localtime
 
