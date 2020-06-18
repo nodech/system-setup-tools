@@ -46,4 +46,7 @@ Strange, but whatever..
  You can check full details at https://wiki.archlinux.org/index.php/Lenovo_ThinkPad_X1_Carbon_(Gen_6)
 
  - Setup Secure Boot (TODO).
- - 
+ - Make sure to have sleep setting in BIOS set to Linux
+
+### Other Notes
+ - Key management tools/flow. (TODO)

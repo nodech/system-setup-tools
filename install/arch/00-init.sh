@@ -1,7 +1,7 @@
 #!/bin/bash
 
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
-source $__DIRECTORY/configs/default-configs.sh
+source $__DIRECTORY/configs/configs.sh
 
 echo "--- Initial setup ---"
 

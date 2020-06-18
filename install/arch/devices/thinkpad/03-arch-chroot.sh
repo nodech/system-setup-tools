@@ -26,3 +26,6 @@ echo " --- Create grub configuration file..."
 grub-mkconfig -o /boot/grub/grub.cfg
 
 popd
+
+echo " --- Install some other packages.."
+pacman -S fwupd

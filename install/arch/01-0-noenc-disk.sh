@@ -1,7 +1,7 @@
 #!/bin/bash
 
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
-source $__DIRECTORY/configs/default-configs.sh
+source $__DIRECTORY/configs/configs.sh
 
 if [[ "$1" == "" ]]; then
   echo "Usage: ./01-0-noenc-disk.sh HARDWARE_DEVICE"
