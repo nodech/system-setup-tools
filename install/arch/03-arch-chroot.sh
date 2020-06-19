@@ -3,7 +3,6 @@
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
 source $__DIRECTORY/configs/configs.sh
 
-echo "--- SYSTEM SETUP ---"
 echo "--- Arch-root step.. ---"
 
 _CFG_EXEC="$CFG_DEVICE/03-arch-chroot.sh"
@@ -33,6 +32,16 @@ echo "127.0.1.1 $CFG_HOSTNAME.localdomain $CFG_HOSTNAME" >> /etc/hosts
 echo " --- Enable NetworkManager..."
 systemctl enable NetworkManager
 systemctl start NetworkManager
+
+echo "--- Installing neovim dependencies ---"
+echo " --- Installing neovim for node..."
+npm i -g neovim
+echo " --- Installing neovim for python3..."
+pip install neovim
+echo " --- Installing neovim for python2..."
+pip2 install neovim
+echo " --- Installing neovim for ruby..."
+gem install neovim
 
 echo "!!! PLEASE PROVIDE PASSWORD FOR ROOT !!!!"
 passwd

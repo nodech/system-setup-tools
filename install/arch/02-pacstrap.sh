@@ -9,16 +9,24 @@ pacstrap /mnt \
   base \
   linux \
   linux-firmware \
+  base-devel \
   grub \
   efibootmgr \
-  neovim \
-  man-db \
-  man-pages \
   networkmanager \
   netctl \
   wpa_supplicant \
+  sudo \
+  man-db \
+  man-pages \
   git \
-  zsh
+  neovim \
+  zsh \
+  zsh-syntax-highlighting \
+  tmux \
+  npm \
+  python2-pip \
+  pyhon-pip \
+  ruby
 
 ## Source: https://wiki.archlinux.org/index.php/Fstab
 # The fstab(5) file can be used to define how disk partitions, various other
