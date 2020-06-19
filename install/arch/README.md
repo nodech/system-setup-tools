@@ -40,6 +40,27 @@ Strange, but whatever..
     - https://wiki.archlinux.org/index.php/LVM
   - `01-...` Should we use LVM? TODO:
     - https://wiki.archlinux.org/index.php/Dm-crypt
+  - `02-pacstrap` - install required packages for the system, generating fstab
+  and get ready to use arch-chroot.
+  - `03-arch-chroot` - Now we need to get basic system configurations before
+  we go into the installed system, this includes:
+    - Setting up timezone
+    - Localization (locale.gen, locale.conf)
+    - hostname and hosts configs
+    - NetworkManager daemon (service)
+    - Install neovim dependencies
+    - Change root password.
+    - Device specific configurations include:
+      - Install and Configure `grub`. 
+      - (optional) install device specific dependencies (e.g. throttled)
+  - `04-system-setup` - from this point on, we are logged into the actual system
+  Currently, this runs device specific script only:
+    - thinkpad: Install firmware updates.
+    - thinkpad: enable lenovo_fix
+    - TODO: Enable secure boot here ? (Key management is also TODO)
+  - `05-user-groups` - Set up user and groups. (Thats it for now)
+  - `06-xorg` - Install necessary dependencies for the Xorg and i3 WM.
+    - At this point, we should also install fonts. But that's TODO for now.
 
 ### Device specific notes
 #### Thinkpad
