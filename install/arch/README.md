@@ -70,4 +70,6 @@ Strange, but whatever..
  - Make sure to have sleep setting in BIOS set to Linux
 
 ### Other Notes
+ - https://github.com/polybar/polybar is pretty simple to compile/install (.bin/)
+ - https://aur.archlinux.org/packages/autojump/ can be used to install autojump.
  - Key management tools/flow. (TODO)
