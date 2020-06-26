@@ -7,6 +7,6 @@ echo "--- User(s) and Group(s) ---"
 echo " --- Make sure network is enabled..."
 read
 
-useradd -m -s /bin/zsh -G nd,wheel,adm,log,sys nd
+useradd -m -s /bin/zsh -G nd,wheel,video,adm,log,sys nd
 
 echo "You need to modify /etc/sudoers file to enable wheel group."

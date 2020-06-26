@@ -16,6 +16,9 @@ echo " --- Check if S3 is enabled..."
 dmesg | grep -i "acpi: (support"
 
 echo " --- Fixing Throttling issue "
-system enable --now lenovo_fix.service
+systemctl enable --now lenovo_fix.service
+
+echo " --- Copying udev rules... "
+cp -v $__DIRECTORY/etc/udev/rules.d/* /etc/udev/rules.d/
 
 echo " --- TODO: Set up secure boot here..."
