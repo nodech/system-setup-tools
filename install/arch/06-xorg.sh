@@ -11,7 +11,7 @@ pacman -S xorg-server \
   xss-lock \
   xorg-xrandr \
   xsel \
-  alsamixer \
+  alsa-utils \
   alacritty \
   rofi \
   dunst \

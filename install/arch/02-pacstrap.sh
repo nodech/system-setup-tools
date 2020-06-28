@@ -10,6 +10,7 @@ pacstrap /mnt \
   linux \
   linux-firmware \
   base-devel \
+  cmake \
   grub \
   efibootmgr \
   networkmanager \
@@ -25,7 +26,7 @@ pacstrap /mnt \
   tmux \
   npm \
   python2-pip \
-  pyhon-pip \
+  python-pip \
   ruby
 
 ## Source: https://wiki.archlinux.org/index.php/Fstab
