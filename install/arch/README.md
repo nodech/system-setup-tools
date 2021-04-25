@@ -32,6 +32,9 @@ Strange, but whatever..
  - `git config pull.ff only` - Make sure we only fast forward on cloned repo.
 
 ### Installation Process
+ Before we start installation process, we need to setup `CFG_DEVICE` env var,
+ which will be used for the machine.
+ 
  Now we can run scripts from 00-...
   - `00-init` - Setup console font, keymap and timezone.
   - `01-0-noenc-disk` - Not encrypted disk formatting.
