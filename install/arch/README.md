@@ -27,13 +27,14 @@ Strange, but whatever..
 ### GIT
  - `pacman -Sy` - update db..
  - `pacman -S git` - Install git.
- - `git clone https://github.com/nodar-chkuaselidze/system-setup-tools.git` (in the HOME folder)
+ - `git clone https://github.com/nodech/system-setup-tools.git` (in the HOME folder)
  - `cd system-setup-tools`
  - `git config pull.ff only` - Make sure we only fast forward on cloned repo.
 
 ### Installation Process
  Before we start installation process, we need to setup `CFG_DEVICE` env var,
  which will be used for the machine.
+  - `exports CFG_DEVICE=\`pwd\`/install/arch/devices/pc-1`
  
  Now we can run scripts from 00-...
   - `00-init` - Setup console font, keymap and timezone.
