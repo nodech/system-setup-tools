@@ -2,6 +2,9 @@
 
 __DIRECTORY=`dirname $0`
 
+echo "--- OS Prober ---"
+pacman -S os-prober
+
 ## Setup GRUB.
 echo "--- GRUB Setup ---"
 
