@@ -18,4 +18,15 @@ pacman -S xorg-server \
   firefox \
   xsecurelock \
   i3-wm \
-  ttf-dejavu
+  ttf-dejavu \
+  fzf \
+  the_silver_searcher \
+  inetutils \
+  rustup \
+  os-prober \
+  inetutils \
+  htop \
+  nmap \
+  openssh \
+  rsync \
+  ranger
