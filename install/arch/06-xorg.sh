@@ -8,7 +8,6 @@ echo "--- Xorg and stuff ---"
 pacman -S xorg-server \
   xf86-video-intel \
   xorg-xinit \
-  xss-lock \
   xorg-xrandr \
   xsel \
   alsa-utils \
@@ -16,6 +15,7 @@ pacman -S xorg-server \
   rofi \
   dunst \
   firefox \
+  xss-lock \
   xsecurelock \
   i3-wm \
   ttf-dejavu \
@@ -29,4 +29,6 @@ pacman -S xorg-server \
   nmap \
   openssh \
   rsync \
-  ranger
+  ranger \
+  picom \
+  feh
