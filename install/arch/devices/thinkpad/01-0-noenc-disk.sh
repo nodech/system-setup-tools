@@ -4,7 +4,7 @@ __DIRECTORY=`dirname $0`
 source $__DIRECTORY/../../utils/diskType.sh
 __DIRECTORY=`dirname $0`
 
-## Thinkpad has 1TB SSD.
+## Thinkpad has 500GiB SSD.
 # NOTE: Currently this script is NVME only.
 # nvme0n1p1 - EFI. - 2GB
 # nvme0n1p2 - /boot - 1GB
