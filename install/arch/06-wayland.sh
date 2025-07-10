@@ -3,24 +3,17 @@
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
 source $__DIRECTORY/configs/configs.sh
 
-echo "--- Xorg and stuff ---"
+echo "--- Wayland and stuff ---"
 
-pacman -S xorg-server \
-  xf86-video-intel \
-  xorg-xinit \
-  xorg-xrandr \
-  xsel \
+pacman -S sway \
   alsa-utils \
   alacritty \
   rofi \
   dunst \
   firefox \
-  xss-lock \
-  xsecurelock \
-  i3-wm \
   ttf-dejavu \
   fzf \
-  the_silver_searcher \
+  ripgrep \
   inetutils \
   rustup \
   os-prober \
@@ -30,5 +23,12 @@ pacman -S xorg-server \
   openssh \
   rsync \
   ranger \
-  picom \
   feh
+
+# Check the sway utils
+# pacman -S waybar \
+#   swaybg \
+#   swaylock \
+#   swayidle \
+#   wl-clipboard \
+#   wdisplays \

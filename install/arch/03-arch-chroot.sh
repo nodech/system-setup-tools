@@ -38,8 +38,6 @@ echo " --- Installing neovim for node..."
 npm i -g neovim
 echo " --- Installing neovim for python3..."
 pip install neovim
-echo " --- Installing neovim for python2..."
-pip2 install neovim
 echo " --- Installing neovim for ruby..."
 gem install neovim
 

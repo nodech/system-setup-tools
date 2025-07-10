@@ -9,12 +9,12 @@ pacstrap /mnt \
   base \
   linux \
   linux-firmware \
+  intel-ucode \ # MMM, intel based ..
   base-devel \
+  lvm2 \
   cmake \
-  grub \
   efibootmgr \
   networkmanager \
-  netctl \
   wpa_supplicant \
   sudo \
   man-db \
@@ -25,7 +25,6 @@ pacstrap /mnt \
   zsh-syntax-highlighting \
   tmux \
   npm \
-  python2-pip \
   python-pip \
   ruby
 
