@@ -8,7 +8,7 @@ __DIRECTORY=`dirname $0`
 echo " --- Configuring kernel modules and crypttab for GRUB..."
 
 # Edit /etc/mkinitcpio.conf
-ecoh " --- Configuring mkinitcpio.conf..."
+echo " --- Configuring mkinitcpio.conf..."
 INIT_HOOKS="HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 resume filesystems fsck)"
 INIT_FILE="FILES=(/crypto_keyfile.bin)"
 sed -i "s|^HOOKS=.*|$INIT_HOOKS|" /mnt/etc/mkinitcpio.conf
