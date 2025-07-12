@@ -7,6 +7,11 @@ __DIRECTORY=`dirname $0`
 DISK=$CFG_DISK
 VOL_GROUP=$CFG_VOL_GROUP
 
+if [[ ! -b $DISK ]]; then
+  echo "$DISK is not a disk, aborting..."
+  exit 1
+fi
+
 # Configure kernel modules and initramfs
 echo " --- Configuring kernel modules and crypttab for GRUB..."
 
