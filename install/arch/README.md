@@ -25,7 +25,8 @@ simple though (even though counter-intuitive for me), to disable `wlan0` interfa
 Strange, but whatever..
 
 ### GIT
- - `pacman -Sy git archlinux-keyring` - Install git and update keyring..
+ - `pacman -Sy git` - Install git.
+ - `pacman -S archlinux-keyring` - update keyring.
  - `git clone https://github.com/nodech/system-setup-tools.git` (in the HOME folder)
  - `cd system-setup-tools`
  - `git config pull.ff only` - Make sure we only fast forward on cloned repo.

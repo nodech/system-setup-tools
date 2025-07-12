@@ -10,9 +10,9 @@ __DIRECTORY=`dirname $0`
 #
 # LVM on LUKS
 # nvme0n1p4 - LVM2 PV - Rest 998 GB?
-#  - LVM2 VG - swap - 20 GB
+#  - LVM2 VG - swap - 40 GB
 #  - LVM2 VG - / - 150 GB
-#  - LVM2 VG - /home/ - REST (828 GB?)
+#  - LVM2 VG - /home/ - REST (808 GB?)
 
 DISK="$1"
 
@@ -76,15 +76,20 @@ LUKS_KEYFILE="/tmp/luks-keyfile"
 dd if=/dev/urandom of=$LUKS_KEYFILE bs=512 count=4
 
 # Prepare main partition
+echo " --- Boot LUKS partition..."
 cryptsetup luksFormat $ROOT_PART --type luks2 --key-file $LUKS_KEYFILE -q
+echo " --- Adding key to LUKS partition..."
 cryptsetup luksAddKey $ROOT_PART --key-file $LUKS_KEYFILE -q <<< "$PASSWORD"
+echo " --- Opening LUKS partition..."
 cryptsetup open $ROOT_PART $MAPPED_ROOT --key-file $LUKS_KEYFILE
 # Prepare LVM on LUKS
 echo " --- Creating LVM on LUKS..."
 pvcreate /dev/mapper/$MAPPED_ROOT
+echo " --- Creating Volume Group..."
 vgcreate $VOL_GROUP /dev/mapper/$MAPPED_ROOT
 # Create logical volumes.
-lvcreate -L 20G -n swap $VOL_GROUP
+echo " --- Creating Logical Volumes..."
+lvcreate -L 40G -n swap $VOL_GROUP
 lvcreate -L 150G -n root $VOL_GROUP
 lvcreate -l 100%FREE -n home $VOL_GROUP
 
@@ -95,7 +100,6 @@ mkswap /dev/$VOL_GROUP/swap
 mkfs.ext4 /dev/$VOL_GROUP/home
 
 # Prepare boot partition.
-chmod 000 $LUKS_KEYFILE
 echo " --- Boot LUKS partition..."
 # We use luks1 for GRUB.
 cryptsetup luksFormat $BOOT_PART --type luks1 --key-file $LUKS_KEYFILE -q
@@ -106,20 +110,19 @@ mkfs.ext4 /dev/mapper/cryptboot
 
 echo ""
 echo " --- Mounting partitions in /mnt..."
-mkdir /mnt/{efi,boot,home}
 
 echo " --- Mounting /"
-# Now we can mount the file system.
-# We first need mount `root (/)`
+mount /dev/$VOL_GROUP/root /mnt
+mkdir /mnt/{efi,boot,home}
+
 echo " --- Mounting /efi"
 mount `diskPart ${DISK} 1` /mnt/efi
 echo "Swap partition"
 swapon /dev/$VOL_GROUP/swap
-echo " --- Mounting /root"
-mount /dev/$VOL_GROUP/root /mnt
 echo " --- Mounting /home"
 mount /dev/$VOL_GROUP/home /mnt/home
 echo " --- Mounting /boot"
 mount /dev/mapper/$MAPPED_BOOT /mnt/boot
 
 mv $LUKS_KEYFILE /mnt/crypto_keyfile.bin
+chmod 000 /mnt/crypto_keyfile.bin
