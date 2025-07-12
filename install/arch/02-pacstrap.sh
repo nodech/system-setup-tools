@@ -13,6 +13,7 @@ pacstrap /mnt \
   intel-ucode \
   base-devel \
   lvm2 \
+  grub \
   cmake \
   efibootmgr \
   networkmanager \
