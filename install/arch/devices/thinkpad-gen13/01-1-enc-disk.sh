@@ -17,7 +17,7 @@ __DIRECTORY=`dirname $0`
 #  - LVM2 VG - / - 150 GB
 #  - LVM2 VG - /home/ - REST (808 GB?)
 
-DISK="$1"
+DISK="/dev/nvme0n1"
 
 if [[ ! -b $DISK ]]; then
   echo "$DISK is not a disk, aborting..."
