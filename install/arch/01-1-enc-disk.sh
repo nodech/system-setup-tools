@@ -3,12 +3,6 @@
 __DIRECTORY=`dirname ${BASH_SOURCE[0]}`
 source $__DIRECTORY/configs/configs.sh
 
-if [[ "$1" == "" ]]; then
-  echo "Usage: ./01-1-enc-disk.sh HARDWARE_DEVICE"
-  echo "Usage example: ./01-1-enc-disk.sh /dev/nvme0n1"
-  exit 1
-fi
-
 _CFG_EXEC="$CFG_DEVICE/01-1-enc-disk.sh"
 
 if [[ ! -x "$_CFG_EXEC" ]]; then
@@ -19,7 +13,7 @@ fi
 
 echo "--- ENCRYPTED DISK SETUP ---"
 
-_DISK=$1
+_DISK=$CFG_DISK
 
 echo " --- Current disk setup:"
 fdisk -l $_DISK
