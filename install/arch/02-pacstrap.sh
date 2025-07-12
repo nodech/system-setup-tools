@@ -10,7 +10,7 @@ pacstrap /mnt \
   base \
   linux \
   linux-firmware \
-  intel-ucode \ # MMM, intel based ..
+  intel-ucode \
   base-devel \
   lvm2 \
   cmake \
