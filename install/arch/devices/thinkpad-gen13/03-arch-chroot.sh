@@ -28,4 +28,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 popd
 
 echo " --- Install some other packages.."
-pacman -S fwupd
+pacman -S fwupd intel-ucode
+
+echo " --- Regenerate initramfs image... (This may take a while)"
+mkinitcpio -p linux
+
+chmod 600 /boot/initramfs-linux*

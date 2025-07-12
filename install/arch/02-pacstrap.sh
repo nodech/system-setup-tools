@@ -10,7 +10,6 @@ pacstrap /mnt \
   base \
   linux \
   linux-firmware \
-  intel-ucode \
   base-devel \
   lvm2 \
   grub \
