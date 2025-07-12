@@ -4,6 +4,9 @@ __DIRECTORY=`dirname $0`
 source $__DIRECTORY/../../utils/diskType.sh
 __DIRECTORY=`dirname $0`
 
+## Special thanks to Than:
+# https://github.com/Thann/arcrypt/blob/master/arcrypt.sh
+
 ## Thinkpad Gen 13 has 1000 GB SSD.
 # nvme0n1p1 - /efi EFI System Partition - 1 GB
 # nvme0n1p2 - /boot Boot Partition - 1 GB
