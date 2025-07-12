@@ -17,7 +17,7 @@ __DIRECTORY=`dirname $0`
 #  - LVM2 VG - / - 150 GB
 #  - LVM2 VG - /home/ - REST (808 GB?)
 
-DISK="/dev/nvme0n1"
+DISK=$CFG_DISK
 
 if [[ ! -b $DISK ]]; then
   echo "$DISK is not a disk, aborting..."
@@ -48,12 +48,12 @@ echo " --- Partition Table is ready. Formatting partitions..."
 
 EFI_PART=`diskPart ${DISK} 1`
 BOOT_PART=`diskPart ${DISK} 2`
-MAPPED_BOOT='cryptboot'
+MAPPED_BOOT=$CFG_MAPPED_BOOT
 
 ROOT_PART=`diskPart ${DISK} 3`
-MAPPED_ROOT='cryptlvm'
+MAPPED_ROOT=$CFG_MAPPED_ROOT
 
-VOL_GROUP="vg0"
+VOL_GROUP=$CFG_VOL_GROUP
 
 echo " --- Formatting EFI System Partition to FAT32..."
 mkfs.fat -F32 $EFI_PART
