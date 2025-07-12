@@ -34,3 +34,6 @@ sed -i "s|^GRUB_CMDLINE_LINUX=.*|$GRUB_CMD|" /mnt/etc/default/grub
 sed -i "s|^#GRUB_ENABLE_CRYPTODISK=.*|$GRUB_CRYPTO|" /mnt/etc/default/grub
 echo "cryptboot $LVM_PART /crypto_keyfile.bin luks" >> /mnt/etc/crypttab
 
+# Hack to make LVM available in chroot
+mkdir /mnt/hostlvm
+mount --bind /run/lvm /mnt/hostlvm

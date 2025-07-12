@@ -2,6 +2,9 @@
 
 __DIRECTORY=`dirname $0`
 
+# Make LVM Available
+ln -s /hostlvm /run/lvm
+
 ## Setup GRUB.
 echo "--- GRUB Setup ---"
 
