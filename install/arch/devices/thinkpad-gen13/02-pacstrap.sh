@@ -27,12 +27,14 @@ sed -i "s|^FILES=.*|$INIT_FILE|" /mnt/etc/mkinitcpio.conf
 echo " --- Configuring GRUB + crypttab..."
 LVM_PART=`diskPart ${DISK} 3`
 LVM_BLKID=`blkid $LVM_PART | sed -n 's/.* UUID=\"\([^\"]*\)\".*/\1/p'`
-GRUB_CMD="GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=$LVM_BLKID:cryptlvm resume=/dev/$VOL_GROUP/swap\""
+GRUB_CMD="GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=$LVM_BLKID:$CFG_MAPPED_ROOT resume=/dev/$VOL_GROUP/swap\""
 GRUB_CRYPTO="GRUB_ENABLE_CRYPTODISK=y"
 sed -i "s|^GRUB_TIMEOUT=.*|GRUB_TIMEOUT=5|" /mnt/etc/default/grub
 sed -i "s|^GRUB_CMDLINE_LINUX=.*|$GRUB_CMD|" /mnt/etc/default/grub
 sed -i "s|^#GRUB_ENABLE_CRYPTODISK=.*|$GRUB_CRYPTO|" /mnt/etc/default/grub
-echo "cryptboot $LVM_PART /crypto_keyfile.bin luks" >> /mnt/etc/crypttab
+
+BOOT_PART=`diskPart ${DISK} 1`
+echo "cryptboot $BOOT_PART /crypto_keyfile.bin luks" >> /mnt/etc/crypttab
 
 # Hack to make LVM available in chroot
 mkdir /mnt/hostlvm
