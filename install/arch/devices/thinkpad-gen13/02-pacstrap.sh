@@ -2,6 +2,7 @@
 
 __DIRECTORY=`dirname $0`
 source $__DIRECTORY/../../utils/diskType.sh
+__DIRECTORY=`dirname $0`
 source $__DIRECTORY/../../configs/configs.sh
 __DIRECTORY=`dirname $0`
 
