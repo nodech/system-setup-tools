@@ -8,15 +8,18 @@ echo "--- Wayland and stuff ---"
 pacman -S alacritty \
   bat \
   ccache \
+  chromium \
   dunst \
   feh \
   firefox \
   fprintd \
   fzf \
+  github-cli \
   grim \
   htop \
   inetutils \
   inetutils \
+  jq \
   lsd \
   nmap \
   openssh \
@@ -46,5 +49,6 @@ pacman -S alacritty \
   wayland-utils \
   wireplumber \
   wl-clipboard \
+  xorg-xwayland \
   yubikey-personalization-gui \
   zoxide \
