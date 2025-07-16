@@ -33,7 +33,7 @@ sed -i "s|^GRUB_TIMEOUT=.*|GRUB_TIMEOUT=5|" /mnt/etc/default/grub
 sed -i "s|^GRUB_CMDLINE_LINUX=.*|$GRUB_CMD|" /mnt/etc/default/grub
 sed -i "s|^#GRUB_ENABLE_CRYPTODISK=.*|$GRUB_CRYPTO|" /mnt/etc/default/grub
 
-BOOT_PART=`diskPart ${DISK} 1`
+BOOT_PART=`diskPart ${DISK} 2`
 echo "cryptboot $BOOT_PART /crypto_keyfile.bin luks" >> /mnt/etc/crypttab
 
 # Hack to make LVM available in chroot
